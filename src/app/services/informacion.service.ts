@@ -5,15 +5,30 @@ import { Http } from '@angular/http';
 export class InformacionService {
 
   info:any = {};
+  sobreNosotros:any[] = [];
   cargada:boolean = false;
+  sobreNosotrosCargada:boolean = false;
 
   constructor(public http:Http) {
-      http.get("assets/data/info.pagina.json")
-          .subscribe( data => {
-              console.log(data.json());
-              this.cargada = true;
-              this.info = data.json();
-          })
+    this.carga_info();
+    this.carga_sobre_nosotros();
+  }
+
+  public carga_info(){
+    this.http.get("assets/data/info.pagina.json")
+        .subscribe( data => {
+            this.cargada = true;
+            this.info = data.json();
+        })
+  }
+
+  public carga_sobre_nosotros(){
+    this.http.get("https://angularweb-7af21.firebaseio.com/equipo.json")
+        .subscribe( data => {
+            // console.log(data.json());
+            this.sobreNosotrosCargada = true;
+            this.sobreNosotros = data.json();
+        })
   }
 
 }
