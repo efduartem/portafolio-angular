@@ -16,11 +16,10 @@ export class ProductosService {
     this.cargando = true;
 
     if(this.productos.length === 0){
-        this.http.get('https://angularweb-7af21.firebaseio.com/productos.json')
+        this.http.get('https://angularweb-7af21.firebaseio.com/productos_idx.json')
                   .subscribe( data => {
-                    console.log(data.json());
                     this.cargando = false;
-                    //this.productos = data.json();
+                    this.productos = data.json();
                   })
     }
   }
