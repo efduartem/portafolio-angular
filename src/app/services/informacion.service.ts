@@ -5,7 +5,7 @@ import { Http } from '@angular/http';
 export class InformacionService {
 
   info:any = {};
-  sobreNosotros:any[] = [];
+  equipo:any[] = [];
   cargada:boolean = false;
   sobreNosotrosCargada:boolean = false;
 
@@ -25,9 +25,8 @@ export class InformacionService {
   public carga_sobre_nosotros(){
     this.http.get("https://angularweb-7af21.firebaseio.com/equipo.json")
         .subscribe( data => {
-            // console.log(data.json());
             this.sobreNosotrosCargada = true;
-            this.sobreNosotros = data.json();
+            this.equipo = data.json();
         })
   }
 
